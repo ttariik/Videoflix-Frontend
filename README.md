@@ -328,3 +328,5 @@ npm run build --prod
 ## 📄 Lizenz
 
 Dieses Projekt ist unter der MIT-Lizenz lizenziert.
+
+Author: Tarik Sabanovic 
