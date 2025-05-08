@@ -1,0 +1,21 @@
+<section>
+  <div class="imprint-container">
+    <h1>Datenschutzerklärung</h1>
+
+    <div class="imprint__company">
+      <strong>{{ company.name }}</strong>
+      <ng-container *ngFor="let sec of sections">
+        <h2>{{ sec.title }}</h2>
+        <ng-container *ngIf="sec.subsections">
+          <ng-container *ngFor="let sub of sec.subsections">
+            <h3 *ngIf="sub.heading">{{ sub.heading }}</h3>
+            <p *ngFor="let line of sub.content" [innerText]="line"></p>
+          </ng-container>
+        </ng-container>
+        <ul *ngIf="sec.listItems">
+          <li *ngFor="let item of sec.listItems">{{ item }}</li>
+        </ul>
+      </ng-container>
+    </div>
+  </div>
+</section>

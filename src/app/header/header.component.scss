@@ -1,0 +1,37 @@
+@import "./../../styles.scss";
+
+header {
+  width: 100%;
+  height: 96px;
+  padding: 0 clamp(12px, 6vw, 96px);
+  @include dFlex($jc: space-between);
+  @include max-width();
+
+  div {
+    overflow: visible;
+    transition: all 100ms ease-in;
+    cursor: pointer;
+    z-index: 500;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .text-logo {
+      padding-left: 6px;
+
+      @media (max-width: 576px) {
+        display: none;
+      }
+    }
+
+    img {
+      height: clamp(40px, 4vw, 20px);
+    }
+
+    button {
+      @include dFlex($g: 6px);
+      @include button();
+    }
+  }
+}

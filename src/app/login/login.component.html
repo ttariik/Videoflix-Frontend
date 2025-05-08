@@ -1,0 +1,78 @@
+<section>
+  <div class="login-container">
+    <h2>Log in</h2>
+
+    <form 
+      (ngSubmit)="onSubmit(contactForm)" 
+      #contactForm="ngForm" 
+      name="contactForm"
+    >
+
+      <div class="input-group icon-input">
+        <img 
+          src="assets/icons/mail.svg" 
+          alt="Email Icon" 
+          class="input-icon" 
+        />
+        <input
+          #email="ngModel"
+          [(ngModel)]="contactData.email"
+          type="email"
+          placeholder="Email Address"
+          id="email"
+          name="email"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          (focus)="emailFocused = true"
+          (blur)="emailFocused = false"
+        />
+      </div>
+
+      <div *ngIf="email.touched && email.errors" class="error">
+        <img src="assets/icons/warning.svg" alt="Warning Icon" />
+        <span *ngIf="email.errors['required']">Email is required</span>
+        <span *ngIf="email.errors['pattern']">Invalid email format</span>
+      </div>
+
+      <div class="password-container icon-input">
+        <img 
+          src="assets/icons/password.svg" 
+          alt="Password Icon" 
+          class="input-icon" 
+        />
+        <input
+          #password="ngModel"
+          [(ngModel)]="contactData.password"
+          [type]="passwordVisible ? 'text' : 'password'"
+          placeholder="Enter a password"
+          name="password"
+          required
+          minlength="8"
+        />
+        <img
+          class="toggle-password"
+          [src]="passwordVisible ? 'assets/icons/visibility.svg' : 'assets/icons/visibility_off.svg'"
+          alt="Toggle Password Visibility"
+          (click)="togglePasswordVisibility('password')"
+        />
+      </div>
+
+      <div *ngIf="password.touched && password.errors" class="error">
+        <img src="assets/icons/warning.svg" alt="Warning Icon" />
+        <span *ngIf="password.errors['required']">Password is required</span>
+        <span *ngIf="password.errors['minlength']">Password must be at least 8 characters</span>
+      </div>
+
+      <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="!contactForm.valid">Log in</button>
+    </form>
+
+    <a routerLink="/forgot-password" class="forgot-password">Forgot password?</a>
+    <p class="signup-link">
+      New to Videoflix? <a routerLink="/signup">Sign Up now</a>
+    </p>
+  </div>
+</section>

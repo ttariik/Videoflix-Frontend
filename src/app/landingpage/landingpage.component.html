@@ -1,0 +1,22 @@
+<main>
+  <h1>Movies, TV Shows, and more</h1>
+  <span>
+    Enter your email to create or restart your subscription
+  </span>
+
+  <div class="input-wrapper">
+    <div class="icon-input">
+      <img src="assets/icons/mail.svg" alt="Mail Icon" class="input-icon" />
+      <input
+        type="text"
+        placeholder="Email Address"
+        [(ngModel)]="email"
+      />
+    </div>
+
+    <button (click)="navigateToSignup()">
+      <span>Sign Up</span>
+      <img src="assets/icons/chevron_right.svg" alt="Chevron Icon" />
+    </button>
+  </div>
+</main>

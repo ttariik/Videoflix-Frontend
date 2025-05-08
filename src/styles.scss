@@ -1,0 +1,469 @@
+$dark: rgb(46, 62, 239);
+$light: #969eef;
+$bg: #141414;
+$white: #ffffff;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  color: $white;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $bg;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+body {
+  transition: background-image 2s ease-in-out;
+}
+
+body.bg-home {
+  background-image: url("assets/img/background2-min.png");
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+body.bg-signup {
+  background-image: url("assets/img/background-img.jpg");
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+body.bg-login {
+  background-image: url("assets/img/background0-min.png");
+  background-color: rgba(0, 0, 0, 0.3);
+}
+body.bg-forgot {
+  background-image: url("assets/img/background0-min.png");
+  background-color: rgba(0, 0, 0, 0.35);
+}
+body.bg-imprint {
+  background-image: url("assets/img/background1.jpg");
+  background-color: rgba(0, 0, 0, 0.35);
+}
+body.bg-privacyPolicy {
+  background-image: url("assets/img/background3.jpg");
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: -1;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+@mixin max-width {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin dFlex($fd: row, $jc: center, $ai: center, $g: 0px) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $g;
+}
+
+@mixin button($bg-color: $dark, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px);
+  border-radius: 60px;
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 100ms ease-in;
+
+  &:hover {
+    background-color: rgba(42, 53, 169, 0.9);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 576px) {
+    padding: 8px 22px;
+  }
+}
+
+@mixin input($border-radius: 32px) {
+  width: 100%;
+  border: 2px solid $white;
+  border-radius: $border-radius;
+  padding: 12px 32px;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.55px;
+  color: $dark;
+  cursor: text;
+  outline: none;
+
+  &::placeholder {
+    color: $dark;
+  }
+
+  &:hover {
+    border-color: $dark;
+  }
+
+  &:focus {
+    border-color: $dark;
+  }
+
+  &:not(:focus):not(:hover) {
+    border-color: $light;
+  }
+}
+
+@mixin inputWhite($border-radius: 32px) {
+  width: 100%;
+  border: 2px solid $white;
+  border-radius: $border-radius;
+  padding: 12px 48px;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.55px;
+  color: $white;
+  cursor: text;
+  outline: none;
+
+  &::placeholder {
+    color: $white;
+  }
+
+  &:hover {
+    border-color: $white;
+  }
+
+  &:focus {
+    border-color: $light;
+  }
+
+  &:not(:focus):not(:hover) {
+    border-color: $white;
+  }
+}
+
+@mixin wrapper() {
+  max-height: fit-content;
+  background: white;
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 520px;
+
+  @media (max-width: 576px) {
+    padding: 24px;
+  }
+}
+
+/* dm-sans-100 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-100.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-200 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 200;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-200.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-300 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-300.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-regular.woff2")
+    format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-500 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-500.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-600 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-600.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-700 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-700.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-800 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-800.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-900 - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../public/assets/fonts/dm-sans-v15-latin-900.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* ------------- Grund-Overlay ------------- */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* ------------- Lens Flare ------------- */
+.flare {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vmin;
+  height: 200vmin;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05),
+    transparent 60%
+  );
+  transform: translate(-50%, -50%);
+  animation: flarePulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes flarePulse {
+  0%,
+  100% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* ------------- 3D-Logo ------------- */
+.logo-3d {
+  font-family: "Arial Black", sans-serif;
+  font-size: 8rem;
+  color: #a855f7;
+  text-shadow: 2px 2px 0 #5e239d, -2px -2px 0 #3b0764;
+  transform-style: preserve-3d;
+  animation: logoSpin 6s linear infinite;
+  z-index: 2;
+  transition: transform 0.5s ease, color 0.5s ease, text-shadow 0.5s ease;
+}
+
+.logo-3d:hover {
+  color: #d8b4fe;
+  text-shadow: 0 0 20px #a855f7;
+  transform: scale(1.1) rotateX(10deg) rotateY(10deg);
+  cursor: pointer;
+}
+
+@keyframes logoSpin {
+  from {
+    transform: rotateY(0deg) rotateX(10deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(10deg);
+  }
+}
+
+/* ------------- Pulsierender Ring ------------- */
+.ring {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 4px solid rgba(168, 85, 247, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  animation: ringGlow 2.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes ringGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4),
+      0 0 20px rgba(168, 85, 247, 0.2);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.8),
+      0 0 60px rgba(168, 85, 247, 0.4);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4),
+      0 0 20px rgba(168, 85, 247, 0.2);
+  }
+}
+
+/* ------------- Film-Flicker-Effekt ------------- */
+.flicker {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  animation: flickerAnim 0.15s steps(2) infinite;
+}
+@keyframes flickerAnim {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.particles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #a855f7;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+.particles span:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+.particles span:nth-child(2) {
+  top: 30%;
+  left: 80%;
+  animation-delay: 0.5s;
+}
+.particles span:nth-child(3) {
+  top: 70%;
+  left: 40%;
+  animation-delay: 1s;
+}
+.particles span:nth-child(4) {
+  top: 85%;
+  left: 60%;
+  animation-delay: 1.5s;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}

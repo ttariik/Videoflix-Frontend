@@ -1,0 +1,104 @@
+@import "./../../styles.scss";
+
+main {
+  width: 100%;
+  height: calc(100vh - 192px);
+  padding: 0 12px;
+  text-align: center;
+
+  @include dFlex($fd: column, $g: 24px);
+  @include max-width();
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: $white;
+  }
+
+  span {
+    font-size: 18px;
+    color: $white;
+    padding-bottom: 12px;
+  }
+
+  .input-wrapper {
+    width: 100%;
+    @include dFlex($g: 24px);
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+
+    .icon-input {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+
+      .input-icon {
+        position: absolute;
+        left: 16px; /* Erhöhter Abstand vom linken Rand */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 23px;
+        height: 23px;
+        pointer-events: none;
+        opacity: 0.6;
+        transition: opacity 0.3s ease, filter 0.3s ease;
+
+        .icon-input:hover &,
+        .icon-input:focus-within & {
+          opacity: 1;
+          filter: drop-shadow(0 0 6px #2e3edf);
+        }
+      }
+
+      input {
+        width: 100%;
+
+
+        @include inputWhite();
+        border: 2px solid transparent;
+        transition: border-color 0.4s ease, box-shadow 0.4s ease;
+
+        &::placeholder {
+          color: $light;
+          opacity: 1;
+        }
+
+        &:hover {
+          border-color: #2e3edf;
+        }
+
+        &:focus {
+          border-color: #2e3edf;
+          box-shadow: 0 0 8px 2px rgba(46, 62, 223, 0.5);
+          animation: pulseBorder 1s ease-in-out;
+          outline: none;
+        }
+      }
+    }
+
+    button {
+      @include button();
+      @include dFlex();
+
+      span {
+        white-space: nowrap;
+        padding: 0;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 62, 223, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 10px 8px rgba(46, 62, 223, 0);
+  }
+  100% {
+    box-shadow: 0 0 8px 2px rgba(46, 62, 223, 0.5);
+  }
+}

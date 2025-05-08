@@ -1,0 +1,55 @@
+<div *ngIf="videoService.isPlayerOpen()" class="video-player-overlay">
+  <div class="video-content">
+    <div class="video-player">
+      <video #videoPlayer controls muted preload="none"></video>
+      <div class="quality-dropdown">
+        <button class="quality-btn" (click)="toggleQualityMenu()">
+          {{ currentQualityLabel }}
+        </button>
+        <div class="quality-menu" *ngIf="showQualityMenu">
+          <button
+            *ngFor="let quality of availableQualities"
+            (click)="changeQuality(quality)"
+          >
+            {{ quality.label }}
+          </button>
+          <button (click)="changeQuality({ label: 'Auto', src: '' })">
+            Auto
+          </button>
+        </div>
+      </div>
+      <div class="spool-buttons">
+        <button class="spool-btn" (click)="rewindVideo()">
+          <img src="assets/icons/spool_backward.png" alt="" /> 10s
+        </button>
+        <button class="spool-btn" (click)="fastForwardVideo()">
+          10s<img src="assets/icons/spool_forward.png" alt="" />
+        </button>
+      </div>
+      <button class="close-btn" (click)="closePlayer()">X</button>
+      <div class="continue-restart-buttons" *ngIf="showButtons">
+        <button
+          *ngIf="this.videoService.handleVideoRestartPosition()"
+          class="continue-btn"
+          (click)="continueVideo()"
+        >
+          Continue
+        </button>
+        <button
+          *ngIf="this.videoService.handleVideoRestartPosition()"
+          class="restart-btn"
+          (click)="restartVideo()"
+        >
+          Restart
+        </button>
+        <button
+          *ngIf="!this.videoService.handleVideoRestartPosition()"
+          class="restart-btn"
+          (click)="startVideo()"
+        >
+          Start
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

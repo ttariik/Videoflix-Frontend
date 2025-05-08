@@ -1,0 +1,60 @@
+@import "./../../styles.scss";
+
+section {
+  position: relative;
+  width: 100%;
+  height: clamp(33vh, 60vw, 70vh);
+  margin-top: -96px;
+  overflow: hidden;
+  @include dFlex();
+  @include max-width();
+  background-color: #1b1b2298;
+
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .description-container {
+    @include dFlex($fd: column, $ai: flex-start, $g: 16px);
+    @include max-width();
+    width: 100%;
+    position: relative;
+    padding: 24px clamp(12px, 6vw, 96px);
+    padding-top: 104px;
+    z-index: 1;
+
+    h2 {
+      color: white;
+      font-weight: 800;
+      font-size: clamp(1.3rem, 3.8vw, 2.3rem);
+    }
+
+    span {
+      color: white;
+      max-width: 50%;
+      text-align: left;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+
+      @media (max-width: 767px) {
+        max-width: clamp(40%, 90vw, 100%);
+      }
+    }
+
+    button {
+      @include button();
+      @include dFlex($g: 6px);
+      margin-top: 8px;
+
+      img {
+        height: clamp(18px, 4vw, 20px);
+        margin-left: -5px;
+      }
+    }
+  }
+}

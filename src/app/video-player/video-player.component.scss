@@ -1,0 +1,278 @@
+@import "./../../styles.scss";
+
+$background-overlay: rgba(15, 15, 30, 0.85);
+$background-blur: blur(10px);
+$glass-border: rgba(255, 255, 255, 0.15);
+$background-button: rgba(255, 255, 255, 0.1);
+$background-button-hover: rgba(255, 255, 255, 0.2);
+$background-button-down: rgba(255, 255, 255, 0.2);
+$border-radius: 12px;
+$button-padding: 8px 16px;
+$button-font-size: clamp(14px, 2vw, 18px);
+$box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+.video-player-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $background-overlay;
+  backdrop-filter: $background-blur;
+  -webkit-backdrop-filter: $background-blur;
+  @include dFlex();
+  z-index: 1000;
+
+  .video-content {
+    width: 80%;
+    @include dFlex();
+
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+  }
+}
+
+.video-player {
+  position: relative;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  width: 90%;
+  height: auto;
+  overflow: hidden;
+  @include dFlex();
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+
+  // Fortschrittsleiste
+  .progress-container {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .progress-bar {
+      width: 0%;
+      height: 6px;
+      background: linear-gradient(90deg, #6a5af9, #ff6b6b);
+      transition: width 0.1s linear;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 100%;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      transform: translateX(-50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
+
+    &:hover .tooltip {
+      opacity: 1;
+    }
+  }
+}
+
+.quality-dropdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 100px;
+
+  .quality-btn {
+    background: $background-button;
+    color: #fff;
+    border: 1px solid $glass-border;
+    padding: $button-padding;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-size: $button-font-size;
+    text-align: left;
+    width: 100%;
+    box-shadow: $box-shadow;
+    transition: background 0.2s ease;
+    @extend .button-glow;
+
+    &:hover {
+      background-color: $background-button-hover;
+    }
+  }
+
+  .quality-menu {
+    background: $background-overlay;
+    backdrop-filter: $background-blur;
+    border-radius: $border-radius;
+    border: 1px solid $glass-border;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+
+    button {
+      background: transparent;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      text-align: left;
+      cursor: pointer;
+      font-size: $button-font-size;
+      width: 100%;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: $background-button-hover;
+      }
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: $background-button;
+  color: #fff;
+  border: 1px solid $glass-border;
+  padding: $button-padding;
+  border-radius: $border-radius;
+  font-size: $button-font-size;
+  cursor: pointer;
+  box-shadow: $box-shadow;
+  transition: background 0.2s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: $background-button-hover;
+  }
+
+  .video-player:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spool-buttons {
+  position: absolute;
+  bottom: 50px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1200;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  @media (max-width: 576px) {
+    bottom: 10px;
+  }
+
+  .video-player:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .spool-btn {
+    background: $background-button;
+    color: #fff;
+    border: 1px solid $glass-border;
+    padding: 8px 14px;
+    border-radius: $border-radius;
+    font-size: clamp(12px, 2vw, 16px);
+    cursor: pointer;
+    @include dFlex($g: 6px);
+    box-shadow: $box-shadow;
+    transition: background 0.2s ease;
+    @extend .button-glow;
+
+    @media (max-width: 576px) {
+      background: $background-button-down;
+      padding: 6px 10px;
+    }
+
+    img {
+      width: 16px;
+    }
+
+    &:hover {
+      background-color: $background-button-hover;
+    }
+  }
+}
+
+.continue-restart-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  z-index: 1200;
+
+  button {
+    background: $background-button;
+    color: #fff;
+    border: 1px solid $glass-border;
+    padding: 10px 16px;
+    border-radius: $border-radius;
+    font-size: $button-font-size;
+    cursor: pointer;
+    @include dFlex($g: 6px);
+    box-shadow: $box-shadow;
+    transition: background 0.2s ease;
+    @extend .button-glow;
+
+    &:hover {
+      background-color: $background-button-hover;
+    }
+  }
+}
+
+.button-glow {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}

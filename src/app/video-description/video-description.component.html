@@ -1,0 +1,9 @@
+<section>
+    <video *ngIf="currentVideo" [src]="currentVideo.video_file" autoplay [muted]="true" loop
+        class="background-video"></video>
+    <div class="description-container">
+        <h2>{{ currentVideo?.title || 'Kein Video verfügbar' }}</h2>
+        <span>{{ currentVideo?.description || 'Keine Beschreibung verfügbar' }}</span>
+        <button (click)="openVideoPlayer()"><img src="assets/icons/play_arrow.svg" alt="">Play</button>
+    </div>
+</section>

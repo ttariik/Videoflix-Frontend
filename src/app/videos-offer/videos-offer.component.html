@@ -1,0 +1,24 @@
+<app-video-description></app-video-description>
+
+<main>
+  <div *ngFor="let category of categories" class="single-genre-container">
+    <h3>{{ category | capitalizeFirst }}</h3>
+    <div class="videos-wrapper">
+      <button class="scroll-left" (click)="scrollLeft(category)">❮</button>
+
+      <div class="videos" [id]="'videos-' + category">
+        <div
+          *ngFor="let video of getVideosByCategory(category)"
+          class="image-container"
+          (click)="openVideoPlayer(video)"
+        >
+          <video [src]="video.video_file" muted></video>
+          <span>{{ video.title }}</span>
+        </div>
+      </div>
+      <button class="scroll-right" (click)="scrollRight(category)">❯</button>
+    </div>
+  </div>
+</main>
+
+<app-video-player *ngIf="videoService.isPlayerOpen()"></app-video-player>

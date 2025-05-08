@@ -1,0 +1,17 @@
+<header>
+    <div class="header-left" routerLink="">
+      <img src="assets/img/logo.svg" alt="" />
+    </div>
+  
+    <div class="header-right">
+      @if (!isLoggedIn) {
+        <button routerLink="login">Log in</button>
+      } @else {
+        <button (click)="logout()">
+          <img src="assets/icons/logout.svg" alt="logout icon" />
+          Log out
+        </button>
+      }
+    </div>
+  </header>
+  
