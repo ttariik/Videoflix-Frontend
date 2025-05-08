@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="/public/assets/img/logo.svg" alt="VideoFlix Logo" width="50"/>
-  <img src="/public/assets/img/text_logo.svg" alt="VideoFlix Logo" width="50"/>
+  <img src="/public/assets/img/text_logo.svg" alt="VideoFlix Logo" width="100"/>
 </div>
 
 <div align="center">
