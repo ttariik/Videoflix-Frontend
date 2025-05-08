@@ -29,7 +29,6 @@ export class ResetpasswordComponent {
   confirmPasswordVisible = false;
 
   constructor() {
-    // UID und Token aus der URL lesen
     this.route.paramMap.subscribe((params) => {
       this.uid = params.get('uid');
       this.token = params.get('token');

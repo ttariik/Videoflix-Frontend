@@ -40,10 +40,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   videoId: number = 0;
   showButtons = true;
 
-  constructor() {
-    // window.addEventListener('beforeunload', this.handleBeforeUnload.bind(this));
-  }
-
   handleBeforeUnload(event: Event) {
     this.saveProgress();
   }
