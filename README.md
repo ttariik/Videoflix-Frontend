@@ -1,7 +1,7 @@
 # VideoFlix 🎬
 
 <div align="center">
-  <img src="/public/assets/img/logo.svg" alt="VideoFlix Logo" width="30"/>
+  <img src="/public/assets/img/logo.svg" alt="VideoFlix Logo" width="10"/>
   <img src="/public/assets/img/text_logo.svg" alt="VideoFlix Logo" width="100"/>
 </div>
 
